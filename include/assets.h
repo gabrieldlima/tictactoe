@@ -3,13 +3,15 @@
 
 // Players
 #define PLAYER_X 0x274C
-#define PLAYER_O 0x2b55
+#define PLAYER_O 0x2B55
 
 // Objects
 #define TROPHY          0x1F3C6
 #define BLACK_SQUARE    0x25FE
 #define WHITE_SQUARE    0x25FD
 #define ORANGE_STAR     0x2734
+#define PERSON          0x1F464
+#define COMPUTER        0x1F5A5
 
 // Characters controls
 #define BOLD    "\033[1m"
