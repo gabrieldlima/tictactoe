@@ -24,7 +24,7 @@ void show_board(wchar_t array[])
         }
     }
 
-    printf("%s\n", BOLD);
+    printf("%s\n\n", BOLD);
 
     printf("\t\t\t\t\t");
     (array[0] == '1') ? printf(" %lc  |", array[0]) : printf(" %lc |", array[0]);
