@@ -8,17 +8,17 @@
 #include "../include/board.h"
 #include "../include/gameTitle.h"
 #include "../include/clearScreen.h"
+#include "../include/handleInput.h"
 #include "../include/assets.h"
 
 int main(void)
-{
-    int c;
-    int gameLoop = 0;
-    int gameMode = 0;
-    int gamePlayer = 0;
-    
-    wchar_t playerX;                    
-    wchar_t playerO;                    
+{   
+    int isRunning = 1;
+    int gameMode = 1;
+    int gamePlayer = 1;
+
+    wchar_t X;                    
+    wchar_t O;                    
     wchar_t board[9] = {
         '0', '1', '2',
         '3', '4', '5', 
@@ -32,64 +32,50 @@ int main(void)
     =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
     setlocale(LC_ALL, "en_US.utf-8");
 
-    
+
     /*=-=-=-=-=-=-=
     Main game loop
     =-=-=-=-=-=-=*/
-    while (1)
+    while (isRunning)
     {
-        /*=-=-=-=-=-=-=-=-=
-        Input for game mode
-        =-=-=-=-=-=-=-=-=*/
+        /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        This block makes the game mode selection routine
+        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
         do
         {
             clear_screen();
             game_title();
+            
+            if (gameMode != 1 && gameMode != 2)
+                printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
 
             printf("%sChoose the game mode:\n", BOLD);
-            printf("[ 1 ]  %lc vs %lc\n", PERSON, PERSON);
-            printf("[ 2 ]  %lc vs %lc\n", PERSON, COMPUTER);
-            printf(">>> %s", RESET);
-
-            scanf("%d", &gameMode);
-            while ((c = getchar()) != '\n' && c != EOF);
-
-            if (gameMode != 1 && gameMode != 2)
-            {
-                printf("%sPlease enter a valid input!%s\n", RED_BOLD, RESET);
-                sleep(2);
-                continue;
-            }
-
+            printf("[ 1 ] --- %lc vs %lc\n", PERSON, PERSON);
+            printf("[ 2 ] --- %lc vs %lc\n", PERSON, COMPUTER);
+            printf(">>> ");
+            gameMode = handleInput();
+            
         } while (gameMode != 1 && gameMode != 2);
 
 
-        /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        Input for the player's character
-        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+        /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        This block makes the character selection routine
+        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
         do
         {
             clear_screen();
             game_title();
 
-            printf("%sChoose your sidee:\n", BOLD);
-            printf("[ 1 ]  %lc\n", PLAYER_X);
-            printf("[ 2 ]  %lc\n", PLAYER_O);
-            printf(">>> %s", RESET);
-
-            scanf("%d", &gamePlayer);
-            while ((c = getchar()) != '\n' && c != EOF);
-
             if (gamePlayer != 1 && gamePlayer != 2)
-            {
-                printf("%sPlease enter a valid input!%s\n", RED_BOLD, RESET);
-                sleep(2);
-                continue;
-            }
-            
-        } while (gamePlayer != 1 && gamePlayer != 2);
+                printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
 
-        break;
+            printf("%sChoose your side:\n", BOLD);
+            printf("[ 1 ] --- %lc\n", PLAYER_X);
+            printf("[ 2 ] --- %lc\n", PLAYER_O);
+            printf(">>> ");
+            gamePlayer = handleInput();
+            
+        } while (gamePlayer != 1 && gamePlayer != 2);   
     }
 
     return 0;
