@@ -15,10 +15,11 @@ int main(void)
 {   
     int isRunning = 1;
     int gameMode = 1;
-    int gamePlayer = 1;
-
-    wchar_t X;                    
-    wchar_t O;                    
+    int characterMode = 1;
+    
+    wchar_t player1;
+    wchar_t player2;
+    wchar_t computer;              
     wchar_t board[9] = {
         '0', '1', '2',
         '3', '4', '5', 
@@ -38,9 +39,9 @@ int main(void)
     =-=-=-=-=-=-=*/
     while (isRunning)
     {
-        /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        This block makes the game mode selection routine
-        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+        /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        This block makes the game mode selection menu
+        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
         do
         {
             clear_screen();
@@ -58,24 +59,63 @@ int main(void)
         } while (gameMode != 1 && gameMode != 2);
 
 
-        /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        This block makes the character selection routine
-        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-*/
+        /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        This block makes the character selection menu
+        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
         do
         {
             clear_screen();
             game_title();
 
-            if (gamePlayer != 1 && gamePlayer != 2)
+            if (characterMode != 1 && characterMode != 2)
                 printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
 
             printf("%sChoose your side:\n", BOLD);
-            printf("[ 1 ] --- %lc\n", PLAYER_X);
-            printf("[ 2 ] --- %lc\n", PLAYER_O);
+            printf("[ 1 ] --- %lc\n", X);
+            printf("[ 2 ] --- %lc\n", O);
             printf(">>> ");
-            gamePlayer = handleInput();
+            characterMode = handleInput();
+
+        } while (characterMode != 1 && characterMode != 2);   
+
+
+        /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        Set up the players and computer variables
+        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+        switch (characterMode)
+        {
+            case 1:
+                player1 = X;
+
+                if (gameMode == 1)
+                    player2 = O;
+                else
+                    computer = O;
+                
+                break;
             
-        } while (gamePlayer != 1 && gamePlayer != 2);   
+            case 2:
+                player1 = O;
+
+                if (gameMode == 1)
+                    player2 = X;
+                else
+                    computer = X;
+                
+                break;
+
+            default:
+                break;
+        }
+
+
+        /*=-=-=-=-=-=-=-=-=-=-=
+        Start of the game logic
+        =-=-=-=-=-=-=-=-=-=-=*/
+        
+
+
+
     }
 
     return 0;
