@@ -12,10 +12,8 @@ int handleInput(void)
     {
         if (isdigit(c))
         {
-            if (c == '1' || c == '2')
-            {
-                n = 10 * n + (c - '0');
-            }
+
+            n = 10 * n + (c - '0');
         }
     }
             
