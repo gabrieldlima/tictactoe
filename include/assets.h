@@ -2,8 +2,8 @@
 #define ASSETS_H
 
 // Players
-#define PLAYER_X 0x274C
-#define PLAYER_O 0x2B55
+#define X 0x274C
+#define O 0x2B55
 
 // Objects
 #define TROPHY          0x1F3C6
