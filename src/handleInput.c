@@ -18,9 +18,6 @@ int handleInput(void)
             }
         }
     }
-
-    if (c == '\n')
-        putchar('\n');
-        
+            
     return n;
 }
