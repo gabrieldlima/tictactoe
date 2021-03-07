@@ -9,21 +9,29 @@
 #include "../include/gameTitle.h"
 #include "../include/clearScreen.h"
 #include "../include/handleInput.h"
+#include "../include/clearBuffer.h"
 #include "../include/assets.h"
+
+#define TRUE  1
+#define FALSE 0
 
 int main(void)
 {   
     int isRunning = 1;
-    int gameMode = 1;
-    int characterMode = 1;
+    int gameMode;
+    int characterMode;
+    int validPosition;
+
+    int player1Pos;
+    int player2Pos;
     
     wchar_t player1;
     wchar_t player2;
     wchar_t computer;              
     wchar_t board[9] = {
-        '0', '1', '2',
-        '3', '4', '5', 
-        '6', '7', '8'
+        '1', '2', '3',
+        '4', '5', '6', 
+        '7', '8', '9'
     };
 
 
@@ -39,6 +47,8 @@ int main(void)
     =-=-=-=-=-=-=*/
     while (isRunning)
     {
+        gameMode = 1;
+        characterMode = 1;
         /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
         This block makes the game mode selection menu
         =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -51,8 +61,8 @@ int main(void)
                 printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
 
             printf("%sChoose the game mode:\n", BOLD);
-            printf("[ 1 ] --- %lc vs %lc\n", PERSON, PERSON);
-            printf("[ 2 ] --- %lc vs %lc\n", PERSON, COMPUTER);
+            printf("[ 1 ] --- %lc vs %lc\n", PERSON, PERSON);               // Player vs Player
+            printf("[ 2 ] --- %lc vs %lc\n", PERSON, COMPUTER);             // Player vs Computer
             printf(">>> ");
             gameMode = handleInput();
             
@@ -71,8 +81,8 @@ int main(void)
                 printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
 
             printf("%sChoose your side:\n", BOLD);
-            printf("[ 1 ] --- %lc\n", X);
-            printf("[ 2 ] --- %lc\n", O);
+            printf("[ 1 ] --- %lc\n", X);                                   // Player 'X'
+            printf("[ 2 ] --- %lc\n", O);                                   // Player 'O'
             printf(">>> ");
             characterMode = handleInput();
 
@@ -109,13 +119,42 @@ int main(void)
         }
 
 
-        /*=-=-=-=-=-=-=-=-=-=-=
-        Start of the game logic
-        =-=-=-=-=-=-=-=-=-=-=*/
-        
+        /*=-=-=-=-=-=-=-=-=-=-
+        PLAYER vs PLAYER LOGIC
+        =-=-=-=-=-=-=-=-=-=-*/
+        if (gameMode == 1)
+        {
+            for (int round = 0; round < 9; round++)
+            {                
+                if (round % 2 == 0)
+                {
+                    player1Pos = 1;
+                    
+                    do
+                    {
+                        clear_screen();
+                        game_title();
+                        show_board(board);
+                        
+                        if (player1Pos < 1 || player1Pos > 9)
+                            printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
+                        
+                        printf("Enter a position %lc: ", player1);
+                        player1Pos = handleInput();
 
+                        if (isdigit(board[player1Pos]))
+                            validPosition = TRUE;
+                        else
+                            validPosition = FALSE;
 
+                    } while ((player1Pos < 1 || player1Pos > 9) || validPosition == FALSE);
+                }
+            }
+        }
 
+        /*=-=-=-=-=-=-=-=-=-=-=-
+        PLAYER vs COMPUTER LOGIC
+        =-=-=-=-=-=-=-=-=-=-=-*/
     }
 
     return 0;
