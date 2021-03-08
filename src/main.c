@@ -63,7 +63,7 @@ int main(void)
             printf("%sChoose the game mode:\n", BOLD);
             printf("[ 1 ] --- %lc vs %lc\n", PERSON, PERSON);               // Player vs Player
             printf("[ 2 ] --- %lc vs %lc\n", PERSON, COMPUTER);             // Player vs Computer
-            printf(">>> ");
+            printf(">>>%s ", RESET);
             gameMode = handleInput();
             
         } while (gameMode != 1 && gameMode != 2);
@@ -83,7 +83,7 @@ int main(void)
             printf("%sChoose your side:\n", BOLD);
             printf("[ 1 ] --- %lc\n", X);                                   // Player 'X'
             printf("[ 2 ] --- %lc\n", O);                                   // Player 'O'
-            printf(">>> ");
+            printf(">>>%s ", RESET);
             characterMode = handleInput();
 
         } while (characterMode != 1 && characterMode != 2);   
@@ -126,11 +126,13 @@ int main(void)
         {
             for (int round = 0; round < 9; round++)
             {                
+                player1Pos = 1;
+                player2Pos = 1;
+                validPosition = FALSE;
+
                 if (round % 2 == 0)
                 {
-                    player1Pos = 1;
-                    
-                    do
+                    while (validPosition == FALSE)
                     {
                         clear_screen();
                         game_title();
@@ -139,23 +141,45 @@ int main(void)
                         if (player1Pos < 1 || player1Pos > 9)
                             printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
                         
-                        printf("Enter a position %lc: ", player1);
+                        printf("%sEnter a position%s %lc: ", BOLD, RESET, player1);
                         player1Pos = handleInput();
 
-                        if (isdigit(board[player1Pos]))
+                        if (player1Pos < 1 || player1Pos > 9)
+                            continue;
+
+                        if (isdigit(board[player1Pos-1]))
                             validPosition = TRUE;
                         else
                             validPosition = FALSE;
-
-                    } while ((player1Pos < 1 || player1Pos > 9) || validPosition == FALSE);
+                    }
                 }
-            }
-        }
+                else
+                {
+                    while (validPosition == FALSE)
+                    {
+                        clear_screen();
+                        game_title();
+                        show_board(board);
+                        
+                        if (player2Pos < 1 || player2Pos > 9)
+                            printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
+                        
+                        printf("%sEnter a position%s %lc: ", BOLD, RESET, player2);
+                        player2Pos = handleInput();
 
+                        if (player2Pos < 1 || player2Pos > 9)
+                            continue;
+
+                        if (isdigit(board[player2Pos-1]))
+                            validPosition = TRUE;
+                        else
+                            validPosition = FALSE;
+                    }
+                }
+            }       
+        }    
+    }
         /*=-=-=-=-=-=-=-=-=-=-=-
         PLAYER vs COMPUTER LOGIC
         =-=-=-=-=-=-=-=-=-=-=-*/
-    }
-
-    return 0;
 }
