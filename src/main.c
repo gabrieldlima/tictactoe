@@ -62,8 +62,8 @@ int main(void)
                 printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
 
             printf("%sChoose the game mode:\n", BOLD);
-            printf("[ 1 ] --- %lc vs %lc\n", PERSON, PERSON);               // Player vs Player
-            printf("[ 2 ] --- %lc vs %lc\n", PERSON, COMPUTER);             // Player vs Computer
+            printf("[ 1 ] --- %lc vs %lc\n", PERSON, PERSON);        
+            printf("[ 2 ] --- %lc vs %lc\n", PERSON, COMPUTER);
             printf(">>>%s ", RESET);
             gameMode = handleInput();
             
@@ -82,8 +82,8 @@ int main(void)
                 printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
 
             printf("%sChoose your side:\n", BOLD);
-            printf("[ 1 ] --- %lc\n", X);                                   // Player 'X'
-            printf("[ 2 ] --- %lc\n", O);                                   // Player 'O'
+            printf("[ 1 ] --- %lc\n", X);                                   
+            printf("[ 2 ] --- %lc\n", O);                                   
             printf(">>>%s ", RESET);
             characterMode = handleInput();
 
@@ -187,12 +187,10 @@ int main(void)
                         }
                     }
                 }
-                
+
                 /*=-=-=-=-=-=-=-=-=-=-=-
                 Checks victory condition
                 =-=-=-=-=-=-=-=-=-=-=-*/
-
-
             } 
         }    
     }
