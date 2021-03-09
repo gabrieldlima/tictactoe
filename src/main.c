@@ -28,11 +28,7 @@ int main(void)
     wchar_t player1;
     wchar_t player2;
     wchar_t computer;              
-    wchar_t board[9] = {
-        '1', '2', '3',
-        '4', '5', '6', 
-        '7', '8', '9'
-    };
+    wchar_t board[9];
 
 
     /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -47,6 +43,11 @@ int main(void)
     =-=-=-=-=-=-=*/
     while (isRunning)
     {
+        wchar_t board[9] = {
+        '1', '2', '3',
+        '4', '5', '6', 
+        '7', '8', '9'
+        };
         gameMode = 1;
         characterMode = 1;
         /*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -148,9 +149,14 @@ int main(void)
                             continue;
 
                         if (isdigit(board[player1Pos-1]))
+                        {
                             validPosition = TRUE;
+                            board[player1Pos-1] = player1;
+                        }
                         else
+                        {
                             validPosition = FALSE;
+                        }
                     }
                 }
                 else
@@ -171,12 +177,23 @@ int main(void)
                             continue;
 
                         if (isdigit(board[player2Pos-1]))
+                        {
                             validPosition = TRUE;
+                            board[player2Pos-1] = player2;
+                        }
                         else
+                        {
                             validPosition = FALSE;
+                        }
                     }
                 }
-            }       
+                
+                /*=-=-=-=-=-=-=-=-=-=-=-
+                Checks victory condition
+                =-=-=-=-=-=-=-=-=-=-=-*/
+
+
+            } 
         }    
     }
         /*=-=-=-=-=-=-=-=-=-=-=-
