@@ -1,2 +1,2 @@
 tictactoe: src/main.c
-	gcc src/*.c -o bin/tictactoe
+	gcc src/*.c -o tictactoe
