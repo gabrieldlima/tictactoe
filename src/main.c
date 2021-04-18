@@ -6,7 +6,6 @@
 #include <locale.h>
 
 #include "../include/board.h"
-#include "../include/gameTitle.h"
 #include "../include/clearScreen.h"
 #include "../include/handleInput.h"
 #include "../include/clearBuffer.h"
@@ -56,7 +55,6 @@ int main(void)
         do
         {
             clear_screen();
-            game_title();
             
             if (gameMode != 1 && gameMode != 2)
                 printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
@@ -76,7 +74,6 @@ int main(void)
         do
         {
             clear_screen();
-            game_title();
 
             if (characterMode != 1 && characterMode != 2)
                 printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
@@ -136,7 +133,6 @@ int main(void)
                     while (validPosition == FALSE)
                     {
                         clear_screen();
-                        game_title();
                         show_board(board);
                         
                         if (player1Pos < 1 || player1Pos > 9)
@@ -164,7 +160,6 @@ int main(void)
                     while (validPosition == FALSE)
                     {
                         clear_screen();
-                        game_title();
                         show_board(board);
                         
                         if (player2Pos < 1 || player2Pos > 9)
