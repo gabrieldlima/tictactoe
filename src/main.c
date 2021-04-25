@@ -5,14 +5,15 @@
 #include <wchar.h>
 #include <locale.h>
 
-#include "board.h"
-#include "clearScreen.h"
-#include "handleInput.h"
-#include "clearBuffer.h"
 #include "assets.h"
+#include "board.h"
 
 #define TRUE  1
 #define FALSE 0
+
+int handleInput(void);
+void clearScreen(void);
+void clearBuffer(void);
 
 int main(void)
 {   
@@ -54,7 +55,7 @@ int main(void)
         =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
         do
         {
-            clear_screen();
+            clearScreen();
             
             if (gameMode != 1 && gameMode != 2)
                 printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
@@ -73,7 +74,7 @@ int main(void)
         =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
         do
         {
-            clear_screen();
+            clearScreen();
 
             if (characterMode != 1 && characterMode != 2)
                 printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
@@ -132,7 +133,7 @@ int main(void)
                 {
                     while (validPosition == FALSE)
                     {
-                        clear_screen();
+                        clearScreen();
                         show_board(board);
                         
                         if (player1Pos < 1 || player1Pos > 9)
@@ -159,7 +160,7 @@ int main(void)
                 {
                     while (validPosition == FALSE)
                     {
-                        clear_screen();
+                        clearScreen();
                         show_board(board);
                         
                         if (player2Pos < 1 || player2Pos > 9)
@@ -189,7 +190,32 @@ int main(void)
             } 
         }    
     }
-        /*=-=-=-=-=-=-=-=-=-=-=-
-        PLAYER vs COMPUTER LOGIC
-        =-=-=-=-=-=-=-=-=-=-=-*/
+}
+
+
+void clearScreen(void)
+{
+    system("clear");
+}
+
+void clearBuffer(void)
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+int handleInput(void)
+{
+    int c;
+    int n = 0;
+
+    while ((c = getchar()) != '\n' && c != EOF)
+    {
+        if (isdigit(c))
+        {
+            n = 10 * n + (c - '0');
+        }
+    }
+            
+    return n;
 }
