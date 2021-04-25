@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#include "../include/handleInput.h"
+#include "handleInput.h"
 
 int handleInput(void)
 {

@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <wchar.h>
 
-#include "../include/board.h"
-#include "../include/assets.h"
+#include "board.h"
+#include "assets.h"
 
 void show_board(wchar_t array[])
 {

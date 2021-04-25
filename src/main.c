@@ -5,11 +5,11 @@
 #include <wchar.h>
 #include <locale.h>
 
-#include "../include/board.h"
-#include "../include/clearScreen.h"
-#include "../include/handleInput.h"
-#include "../include/clearBuffer.h"
-#include "../include/assets.h"
+#include "board.h"
+#include "clearScreen.h"
+#include "handleInput.h"
+#include "clearBuffer.h"
+#include "assets.h"
 
 #define TRUE  1
 #define FALSE 0

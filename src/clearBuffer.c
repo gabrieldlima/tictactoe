@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../include/clearBuffer.h"
+#include "clearBuffer.h"
 
 void clearBuffer(void)
 {
