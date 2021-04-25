@@ -38,11 +38,33 @@ int main(void)
     {
         player1 = X;
         player2 = O;
+        player1Pos = 1;
+        player2Pos = 1;
         wchar_t board[9] = {
         '1', '2', '3',
         '4', '5', '6', 
         '7', '8', '9'
         };
+
+        clearScreen();
+
+        for (int round = 1; round <= 9; ++round)
+        {
+            showBoard(board);
+
+            printf("%sEnter a position %lc\n»»» ", BOLD, (round % 2 != 0) ? X : O);
+
+            (round % 2 != 0) ? (player1Pos = handleInput()) : (player2Pos = handleInput());
+
+            if ((player1Pos < 1 || player1Pos > 9) || (player2Pos < 1 || player2Pos > 9))
+            {
+                printf("%sEnter a valid input!%s\n", RED_BOLD, RESET);
+                sleep(1.5);
+                --round;
+            }
+            
+            clearScreen();
+        }
     }
 }
 
