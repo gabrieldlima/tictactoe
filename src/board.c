@@ -4,7 +4,7 @@
 #include "board.h"
 #include "assets.h"
 
-void show_board(wchar_t array[])
+void showBoard(wchar_t array[])
 {
     printf("%s\n", BOLD);
 

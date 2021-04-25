@@ -1,6 +1,6 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-void show_board(wchar_t array[]);
+void showBoard(wchar_t array[]);
 
 #endif

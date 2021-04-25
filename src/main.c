@@ -134,7 +134,7 @@ int main(void)
                     while (validPosition == FALSE)
                     {
                         clearScreen();
-                        show_board(board);
+                        showBoard(board);
                         
                         if (player1Pos < 1 || player1Pos > 9)
                             printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
@@ -161,7 +161,7 @@ int main(void)
                     while (validPosition == FALSE)
                     {
                         clearScreen();
-                        show_board(board);
+                        showBoard(board);
                         
                         if (player2Pos < 1 || player2Pos > 9)
                             printf("%sPlease, enter a valid input!%s\n", RED_BOLD, RESET);
