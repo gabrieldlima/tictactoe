@@ -13,7 +13,6 @@
 
 int handleInput(void);
 void clearScreen(void);
-void clearBuffer(void);
 
 int main(void)
 {   
@@ -46,24 +45,39 @@ int main(void)
         '7', '8', '9'
         };
 
-        clearScreen();
-
+        // The maximum number of iterations in the loop is 9 rounds, according to the number of positions on the board
         for (int round = 1; round <= 9; ++round)
         {
+            // Updates the player's screen
+            clearScreen();
             showBoard(board);
 
+            // Asks the player for an input
             printf("%sEnter a position %lc\n»»» ", BOLD, (round % 2 != 0) ? X : O);
-
             (round % 2 != 0) ? (player1Pos = handleInput()) : (player2Pos = handleInput());
 
+            // Checks if the input is within the allowed values
             if ((player1Pos < 1 || player1Pos > 9) || (player2Pos < 1 || player2Pos > 9))
             {
                 printf("%sEnter a valid input!%s\n", RED_BOLD, RESET);
                 sleep(1.5);
                 --round;
             }
-            
-            clearScreen();
+            // Checks whether the chosen position is free on the board
+            else if (((round % 2 != 0) && !(isdigit(board[player1Pos - 1]))) || ((round % 2 == 0) && !(isdigit(board[player2Pos - 1]))))
+            {
+                printf("%sEnter a valid input!%s\n", RED_BOLD, RESET);
+                sleep(1.5);
+                --round;
+            }
+            // If the entry is correct, place the piece in the chosen position on the board
+            else
+            {
+                if (round % 2 != 0)
+                    board[player1Pos - 1] = player1;
+                else
+                    board[player2Pos - 1] = player2;
+            }
         }
     }
 }
@@ -72,12 +86,6 @@ int main(void)
 void clearScreen(void)
 {
     system("clear");
-}
-
-void clearBuffer(void)
-{
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
 }
 
 int handleInput(void)
