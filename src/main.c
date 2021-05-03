@@ -22,6 +22,7 @@ int main(void)
     wchar_t player1;
     wchar_t player2;
     wchar_t board[9];
+    wchar_t winner;
     
     int player1Pos;
     int player2Pos;
@@ -77,9 +78,50 @@ int main(void)
                     board[player1Pos - 1] = player1;
                 else
                     board[player2Pos - 1] = player2;
+            }   
+
+            // Checks if there is a victory condition and closes the loop
+            // 0 1 2 3 4 5 6 7 8 
+            
+            int sum = 0;
+            for (int i = 0; i < 9; i++)
+            {
+                if (i == 0 || i == 3 || i == 6)
+                {
+                    if (board[i] == X && board[i+1] == X && board[i+2] == X)
+                    {
+                        winner = X;
+                    }
+                    else if (board[i] == O && board[i+1] == O && board[i+2] == O)
+                    {
+                        winner = O;
+                    }
+                    
+                }
             }
+
+            if (winner == X)
+            {
+                clearScreen();
+                showBoard(board);
+                printf("WINNER %lc\n", X);
+                sleep(5);
+                break;  
+            }
+            else if (winner == O)
+            {
+                clearScreen();
+                showBoard(board);
+                printf("WINNER %lc\n", O);
+                sleep(5);
+                break;  
+            }
+            
         }
+        break;
     }
+
+    return 0;
 }
 
 
