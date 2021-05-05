@@ -26,7 +26,7 @@ int main(void)
     
     int player1Pos;
     int player2Pos;
-    int validPos;
+    int round;
     
     setlocale(LC_ALL, "en_US.utf-8");
 
@@ -47,7 +47,7 @@ int main(void)
         };
 
         // The maximum number of iterations in the loop is 9 rounds, according to the number of positions on the board
-        for (int round = 1; round <= 9; ++round)
+        for (round = 1; round <= 9; ++round)
         {
             // Updates the player's screen
             clearScreen();
@@ -81,22 +81,60 @@ int main(void)
             }   
 
             // Checks if there is a victory condition and closes the loop
-            // 0 1 2 3 4 5 6 7 8 
-            
-            int sum = 0;
-            for (int i = 0; i < 9; i++)
+            if (round >= 5)
             {
-                if (i == 0 || i == 3 || i == 6)
+                for (int i = 0; i < 9; i++)
                 {
-                    if (board[i] == X && board[i+1] == X && board[i+2] == X)
+                    // Horizontal
+                    if (i == 0 || i == 3 || i == 6)
                     {
-                        winner = X;
+                        if (board[i] == X && board[i+1] == X && board[i+2] == X)
+                        {
+                            winner = X;
+                        }
+                        else if (board[i] == O && board[i+1] == O && board[i+2] == O)
+                        {
+                            winner = O;
+                        }  
                     }
-                    else if (board[i] == O && board[i+1] == O && board[i+2] == O)
+                    // Vertical
+                    if (i == 0 || i == 1 || i == 2)
                     {
-                        winner = O;
+                        if (board[i] == X && board[i+3] == X && board[i+6] == X)
+                        {
+                            winner = X;
+                        }
+                        else if (board[i] == O && board[i+3] == O && board[i+6] == O)
+                        {
+                            winner = O;
+                        }
                     }
-                    
+                    // Diagonal
+                    if (i == 0 || i == 2)
+                    {
+                        if (i == 0)
+                        {
+                            if (board[i] == X && board[i+4] == X && board[i+8] == X)
+                            {
+                                winner = X;
+                            }
+                            else if (board[i] == O && board[i+4] == O && board[i+8] == O)
+                            {
+                                winner = O;
+                            }   
+                        }
+                        else
+                        {
+                            if (board[i] == X && board[i+2] == X && board[i+4] == X)
+                            {
+                                winner = X;
+                            }
+                            else if (board[i] == O && board[i+2] == O && board[i+4] == O)
+                            {
+                                winner = O;
+                            }   
+                        }
+                    }
                 }
             }
 
@@ -105,7 +143,7 @@ int main(void)
                 clearScreen();
                 showBoard(board);
                 printf("WINNER %lc\n", X);
-                sleep(5);
+                sleep(3);
                 break;  
             }
             else if (winner == O)
@@ -113,7 +151,7 @@ int main(void)
                 clearScreen();
                 showBoard(board);
                 printf("WINNER %lc\n", O);
-                sleep(5);
+                sleep(3);
                 break;  
             }
             
