@@ -27,6 +27,7 @@ int main(void)
     int player1Pos;
     int player2Pos;
     int round;
+    int match = 0;
     
     setlocale(LC_ALL, "en_US.utf-8");
 
@@ -40,6 +41,9 @@ int main(void)
         player2 = O;
         player1Pos = 1;
         player2Pos = 1;
+        winner = '.';
+        round = 1;
+        match++;
         wchar_t board[9] = {
         '1', '2', '3',
         '4', '5', '6', 
@@ -47,14 +51,15 @@ int main(void)
         };
 
         // The maximum number of iterations in the loop is 9 rounds, according to the number of positions on the board
-        for (round = 1; round <= 9; ++round)
+        for (round; round <= 9; ++round)
         {
             // Updates the player's screen
             clearScreen();
-            showBoard(board);
+            showBoard(board, round, match);
 
             // Asks the player for an input
-            printf("%sEnter a position %lc\n»»» ", BOLD, (round % 2 != 0) ? X : O);
+            // printf("%sEnter a position %lc\n»»» ", BOLD, (round % 2 != 0) ? X : O);
+            printf("%sPlayer %c, enter a position:\n»»» ", BOLD, (round % 2 != 0) ? '1' : '2');
             (round % 2 != 0) ? (player1Pos = handleInput()) : (player2Pos = handleInput());
 
             // Checks if the input is within the allowed values
@@ -138,25 +143,19 @@ int main(void)
                 }
             }
 
-            if (winner == X)
+            if (winner == X || winner == O)
             {
                 clearScreen();
-                showBoard(board);
-                printf("WINNER %lc\n", X);
-                sleep(3);
-                break;  
+                showBoard(board, round, match);
+                printf("Winner %lc\n", winner);
+                break;
             }
-            else if (winner == O)
-            {
-                clearScreen();
-                showBoard(board);
-                printf("WINNER %lc\n", O);
-                sleep(3);
-                break;  
-            }
-            
+
         }
-        break;
+
+
+        // Game Loop end
+        // break;
     }
 
     return 0;
