@@ -21,6 +21,7 @@ int main(void)
     wchar_t player2;
     wchar_t winner;
     wchar_t board[9];
+    char playAgain;
     
     int player1Pos;
     int player2Pos;
@@ -43,6 +44,7 @@ int main(void)
         '4', '5', '6', 
         '7', '8', '9'
         };
+        playAgain = 'Y';
 
         player1Pos = 1;
         player2Pos = 1;
@@ -70,7 +72,7 @@ int main(void)
             // Checks if the input is within the allowed values
             if ((player1Pos < 1 || player1Pos > 9) || (player2Pos < 1 || player2Pos > 9))
             {
-                printf("%sEnter a valid input!%s\n", RED_BOLD, RESET);
+                printf("%s Enter a valid input!%s\n", RED_BOLD, RESET);
                 sleep(1.5);
                 --round;
             }
@@ -80,7 +82,7 @@ int main(void)
             // Checks whether the chosen position is free on the board
             else if (((round % 2 != 0) && !(isdigit(board[player1Pos - 1]))) || ((round % 2 == 0) && !(isdigit(board[player2Pos - 1]))))
             {
-                printf("%sEnter a valid input!%s\n", RED_BOLD, RESET);
+                printf("%s Enter a valid input!%s\n", RED_BOLD, RESET);
                 sleep(1.5);
                 --round;
             }
@@ -166,16 +168,34 @@ int main(void)
         {
             clearScreen();
             showBoard(board, round, matches);
-            printf("%sPLAYER %lc WON THE GAME!%s\n", WHITE_BOLD, winner, RESET);
+            printf("%s%lc PLAYER %lc WON THE GAME!%s\n", WHITE_BOLD, TROPHY, winner, RESET);
         }
         else
         {
             clearScreen();
             showBoard(board, round, matches);
-            printf("%sDRAW!%s\n", WHITE_BOLD, RESET);
+            printf("%s DRAW!%s\n", WHITE_BOLD, RESET);
         }
+        printf("%s _____________________________________%s\n\n",WHITE_BOLD, RESET);
+
         
-        break;
+        //-------------------------------------------------------------------------------------
+        // Asks if the player wants to play again
+        do
+        {
+            printf("%s Restart the game? [Y/n] ", WHITE_BOLD);
+            scanf(" %c", &playAgain);
+            getchar();
+
+        } while (toupper(playAgain) != 'Y' && toupper(playAgain) != 'N');
+
+
+        //----------------------------------------------------------------------------------------------------
+        // Leave the game
+        if (toupper(playAgain) == 'N')
+        {
+            break;
+        }
     }
 
     return 0;
