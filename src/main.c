@@ -10,6 +10,7 @@
 
 int handleInput(void);
 void clearScreen(void);
+void showGameEndStatus(wchar_t winner);
 
 
 int main(void)
@@ -162,21 +163,12 @@ int main(void)
                 break;
         }
 
+
         //----------------------------------------------------------------------------------------------------
         // Shows the victorious player on the screen
-        if (winner == X || winner == O)
-        {
-            clearScreen();
-            showBoard(board, round, matches);
-            printf("%s%lc PLAYER %lc WON THE GAME!%s\n", WHITE_BOLD, TROPHY, winner, RESET);
-        }
-        else
-        {
-            clearScreen();
-            showBoard(board, round, matches);
-            printf("%s DRAW!%s\n", WHITE_BOLD, RESET);
-        }
-        printf("%s _____________________________________%s\n\n",WHITE_BOLD, RESET);
+        clearScreen();
+        showBoard(board, round, matches);
+        showGameEndStatus(winner);
 
         
         //-------------------------------------------------------------------------------------
@@ -186,6 +178,12 @@ int main(void)
             printf("%s Restart the game? [Y/n] ", WHITE_BOLD);
             scanf(" %c", &playAgain);
             getchar();
+
+            if (toupper(playAgain) != 'Y' && toupper(playAgain) != 'N')
+            {
+                printf("%s Enter a valid input!%s\n", RED_BOLD, RESET);
+                sleep(1.5);
+            }
 
         } while (toupper(playAgain) != 'Y' && toupper(playAgain) != 'N');
 
@@ -226,4 +224,20 @@ int handleInput(void)
     }
             
     return n;
+}
+
+
+//----------------------------------------------------------------------------------------------------
+// Function to show the win or draw status on the screen
+void showGameEndStatus(wchar_t winner)
+{
+    if (winner == X || winner == O)
+    {
+        printf("%s%lc PLAYER %lc WON THE GAME!%s\n", WHITE_BOLD, TROPHY, winner, RESET);
+    }
+    else
+    {
+        printf("%s DRAW!%s\n", WHITE_BOLD, RESET);
+    }
+    printf("%s _____________________________________%s\n\n",WHITE_BOLD, RESET);
 }
