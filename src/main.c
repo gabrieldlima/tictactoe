@@ -23,7 +23,7 @@ int main(void)
     wchar_t player2;
     wchar_t winner;
     wchar_t board[9];
-    char playAgain;
+    char restartGame;
     
     int player1Pos;
     int player2Pos;
@@ -46,7 +46,7 @@ int main(void)
         '4', '5', '6', 
         '7', '8', '9'
         };
-        playAgain = 'Y';
+        restartGame = 'Y';
 
         player1Pos = 1;
         player2Pos = 1;
@@ -164,7 +164,7 @@ int main(void)
 
 
         //----------------------------------------------------------------------------------------------------
-        // 
+        // Block that checks if the player wants to play again
         do
         {
             clearScreen();
@@ -172,20 +172,20 @@ int main(void)
             showGameStatus(winner);
 
             printf("%s Restart the game? [Y/n] ", WHITE_BOLD);
-            scanf(" %c", &playAgain);
+            scanf(" %c", &restartGame);
             getchar();
 
-            if (toupper(playAgain) != 'Y' && toupper(playAgain) != 'N')
+            if (toupper(restartGame) != 'Y' && toupper(restartGame) != 'N')
             {
                 showErrorMsg();
             }
 
-        } while (toupper(playAgain) != 'Y' && toupper(playAgain) != 'N');
+        } while (toupper(restartGame) != 'Y' && toupper(restartGame) != 'N');
 
 
         //----------------------------------------------------------------------------------------------------
         // Leave the game
-        if (toupper(playAgain) == 'N')
+        if (toupper(restartGame) == 'N')
         {
             break;
         }
