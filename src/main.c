@@ -202,11 +202,16 @@ int main(void)
 }
 
 
+//----------------------------------------------------------------------------------------------------
+// Clear Screen function
 void clearScreen(void)
 {
     system("clear");
 }
 
+
+//----------------------------------------------------------------------------------------------------
+// Function to take the player's input and return only whole numbers
 int handleInput(void)
 {
     int c;
