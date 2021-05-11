@@ -11,7 +11,7 @@
 int handleInput(void);
 void clearScreen(void);
 void showErrorMsg(void);
-void showGameEndStatus(wchar_t winner);
+void showGameStatus(wchar_t winner);
 
 
 int main(void)
@@ -164,16 +164,13 @@ int main(void)
 
 
         //----------------------------------------------------------------------------------------------------
-        // Shows the victorious player on the screen
-        clearScreen();
-        showBoard(board, round, matches);
-        showGameEndStatus(winner);
-
-        
-        //-------------------------------------------------------------------------------------
-        // Asks if the player wants to play again
+        // 
         do
         {
+            clearScreen();
+            showBoard(board, round, matches);
+            showGameStatus(winner);
+
             printf("%s Restart the game? [Y/n] ", WHITE_BOLD);
             scanf(" %c", &playAgain);
             getchar();
@@ -227,7 +224,7 @@ int handleInput(void)
 
 //----------------------------------------------------------------------------------------------------
 // Function to show the win or draw status on the screen
-void showGameEndStatus(wchar_t winner)
+void showGameStatus(wchar_t winner)
 {
     if (winner == X || winner == O)
     {
