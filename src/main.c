@@ -10,6 +10,7 @@
 
 int handleInput(void);
 void clearScreen(void);
+void showErrorMsg(void);
 void showGameEndStatus(wchar_t winner);
 
 
@@ -73,8 +74,7 @@ int main(void)
             // Checks if the input is within the allowed values
             if ((player1Pos < 1 || player1Pos > 9) || (player2Pos < 1 || player2Pos > 9))
             {
-                printf("%s Enter a valid input!%s\n", RED_BOLD, RESET);
-                sleep(1.5);
+                showErrorMsg();
                 --round;
             }
             
@@ -83,8 +83,7 @@ int main(void)
             // Checks whether the chosen position is free on the board
             else if (((round % 2 != 0) && !(isdigit(board[player1Pos - 1]))) || ((round % 2 == 0) && !(isdigit(board[player2Pos - 1]))))
             {
-                printf("%s Enter a valid input!%s\n", RED_BOLD, RESET);
-                sleep(1.5);
+                showErrorMsg();
                 --round;
             }
             
@@ -181,8 +180,7 @@ int main(void)
 
             if (toupper(playAgain) != 'Y' && toupper(playAgain) != 'N')
             {
-                printf("%s Enter a valid input!%s\n", RED_BOLD, RESET);
-                sleep(1.5);
+                showErrorMsg();
             }
 
         } while (toupper(playAgain) != 'Y' && toupper(playAgain) != 'N');
@@ -240,4 +238,13 @@ void showGameEndStatus(wchar_t winner)
         printf("%s DRAW!%s\n", WHITE_BOLD, RESET);
     }
     printf("%s _____________________________________%s\n\n",WHITE_BOLD, RESET);
+}
+
+
+//----------------------------------------------------------------------------------------------------
+// Function to show error message
+void showErrorMsg(void)
+{
+    printf("%s Enter a valid input!%s\n", RED_BOLD, RESET);
+    sleep(1.5);   
 }
