@@ -1,2 +1,2 @@
-tictactoe: src/main.c src/board.c src/assets.h
+tictactoe: src/main.c
 	gcc src/*.c -o tictactoe
