@@ -1,3 +1,13 @@
+/* **************************************************************************************
+|                                     TIC TAC TOE                                       |
+| AUTHOR:     Gabriel Lima                                                              |
+| GITHUB:     https://github.com/gabrieldlima/Tictactoe                                 |
+|                                                                                       | 
+| This is a simple Tic-Tac-Toe game implemented in C using Unicode Characters (emojis). |
+|                                                                                       |
+| Copyright (c) 2021 Gabriel Lima                                                       |
+************************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
