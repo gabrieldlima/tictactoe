@@ -1,11 +1,10 @@
 /* **************************************************************************************
 |                                     TIC TAC TOE                                       |
 |                                                                                       |
-| AUTHOR:   Gabriel Lima <github.com/gabrieldlima>                                      |
-| DATE:     May, 2021                                                                   |
+| Author:   Gabriel Lima <github.com/gabrieldlima>                                      |
+| Date:     May, 2021                                                                   |
 |                                                                                       | 
-| Tic-tac-toe implemented in C. The difference with this little project is that it uses |
-| emojis to represent the pieces on the board instead of using the letters 'X' and 'O'. |
+| Tic-tac-toe implemented in C using Emojis to represent the game pieces.               |
 |                                                                                       |
 |                         Copyright (c) 2021 Gabriel Lima                               |
 ************************************************************************************** */
