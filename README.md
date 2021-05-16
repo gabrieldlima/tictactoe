@@ -2,7 +2,7 @@
 ---
 Welcome:vulcan_salute::nerd_face:! This is a simple Tic-tac-toe console application implemented in C that uses emojis to represent the game pieces :x:-:o: in order to make it more visually appealing. Let's play it! :joystick:
 
-## Screenshot
+## Screenshots
 Win                        |  Draw
 :-------------------------:|:-------------------------:
 ![](images/win.png)|  ![](images/draw.png)
