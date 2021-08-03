@@ -4,7 +4,7 @@ Welcome:vulcan_salute::nerd_face:! This is a simple Tic-tac-toe console applicat
 ## Screenshots
 Win                        |  Draw
 :-------------------------:|:-------------------------:
-![](images/win.png)|  ![](images/draw.png)
+![win](screenshots/win.png)|![draw](screenshots/draw.png)
 
 ## Installation
 ![Installation](https://j.gifs.com/z6pvP7.gif)
