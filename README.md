@@ -6,9 +6,6 @@ Win                        |  Draw
 :-------------------------:|:-------------------------:
 ![win](screenshots/win.png)|![draw](screenshots/draw.png)
 
-## Installation
-![Installation](https://j.gifs.com/z6pvP7.gif)
-
 ## Demo
 ![demo](https://j.gifs.com/k2R8QY.gif)
 
